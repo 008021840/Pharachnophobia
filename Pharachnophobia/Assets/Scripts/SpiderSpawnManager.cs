@@ -9,6 +9,12 @@ public class SpiderSpawnManager : MonoBehaviour
     [Header("Spawn Points")]
     [SerializeField] private Transform[] spawnPoints;
 
+    [Header("Target (Bed)")]
+    [SerializeField] private Transform bedTarget;
+
+    [Header("Managers")]
+    [SerializeField] private SanityManager sanityManager;
+
     [Header("Spawn Timing")]
     [SerializeField] private float minSpawnDelay = 0.5f;
     [SerializeField] private float maxSpawnDelay = 2.5f;
@@ -30,9 +36,9 @@ public class SpiderSpawnManager : MonoBehaviour
             float waitTime = Random.Range(minSpawnDelay, maxSpawnDelay);
             yield return new WaitForSeconds(waitTime);
 
-            if (spiderPrefab == null || spawnPoints.Length == 0)
+            if (spiderPrefab == null || spawnPoints.Length == 0 || bedTarget == null || sanityManager == null)
             {
-                Debug.LogWarning("Spider prefab or spawn points are missing!");
+                Debug.LogWarning("Missing spider prefab, spawn points, bed target, or sanity manager!");
                 continue;
             }
 
@@ -50,12 +56,23 @@ public class SpiderSpawnManager : MonoBehaviour
         int randomIndex = Random.Range(0, spawnPoints.Length);
         Transform chosenSpawnPoint = spawnPoints[randomIndex];
 
-        GameObject newSpider = Instantiate(spiderPrefab, chosenSpawnPoint.position, Quaternion.identity);
+        GameObject newSpider = Instantiate(
+            spiderPrefab,
+            chosenSpawnPoint.position,
+            Quaternion.identity
+        );
 
         Spider spiderScript = newSpider.GetComponent<Spider>();
+
         if (spiderScript != null)
         {
+            spiderScript.SetTarget(bedTarget);
             spiderScript.SetSpawnManager(this);
+            spiderScript.SetSanityManager(sanityManager);
+        }
+        else
+        {
+            Debug.LogWarning("Spawned spider prefab does not have Spider.cs attached!");
         }
 
         currentSpidersAlive++;
