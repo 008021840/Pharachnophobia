@@ -9,7 +9,7 @@ public class SpiderSpawnManager : MonoBehaviour
     [Header("Spawn Points")]
     [SerializeField] private Transform[] spawnPoints;
 
-    [Header("Target (Bed)")]
+    [Header("Target")]
     [SerializeField] private Transform bedTarget;
 
     [Header("Managers")]
@@ -22,6 +22,16 @@ public class SpiderSpawnManager : MonoBehaviour
     [Header("Spawn Limits")]
     [SerializeField] private int maxSpidersAlive = 10;
 
+    [Header("Ceiling Spiders")]
+    [SerializeField] private float ceilingY = 5f;
+    [SerializeField] private float dropStopY = 2f;
+
+    [Range(0f, 1f)]
+    [SerializeField] private float ceilingSpiderChance = 1f;
+
+    [Range(0f, 1f)]
+    [SerializeField] private float fastDropChance = 0f;
+
     private int currentSpidersAlive = 0;
 
     private void Start()
@@ -33,12 +43,11 @@ public class SpiderSpawnManager : MonoBehaviour
     {
         while (true)
         {
-            float waitTime = Random.Range(minSpawnDelay, maxSpawnDelay);
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
 
             if (spiderPrefab == null || spawnPoints.Length == 0 || bedTarget == null || sanityManager == null)
             {
-                Debug.LogWarning("Missing spider prefab, spawn points, bed target, or sanity manager!");
+                Debug.LogWarning("Missing references in SpiderSpawnManager!");
                 continue;
             }
 
@@ -53,27 +62,43 @@ public class SpiderSpawnManager : MonoBehaviour
 
     private void SpawnSpider()
     {
-        int randomIndex = Random.Range(0, spawnPoints.Length);
-        Transform chosenSpawnPoint = spawnPoints[randomIndex];
+        Transform chosenSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Vector3 spawnPosition = chosenSpawnPoint.position;
 
-        GameObject newSpider = Instantiate(
-            spiderPrefab,
-            chosenSpawnPoint.position,
-            Quaternion.identity
-        );
+        bool isCeilingSpider = Random.value < ceilingSpiderChance;
+        bool isFastDropSpider = isCeilingSpider && Random.value < fastDropChance;
 
-        Spider spiderScript = newSpider.GetComponent<Spider>();
+        Spider.SpiderMoveType chosenMoveType = Spider.SpiderMoveType.CrawlToTarget;
 
-        if (spiderScript != null)
+        if (isCeilingSpider)
         {
-            spiderScript.SetTarget(bedTarget);
-            spiderScript.SetSpawnManager(this);
-            spiderScript.SetSanityManager(sanityManager);
+            spawnPosition.y = ceilingY;
+
+            chosenMoveType = isFastDropSpider
+                ? Spider.SpiderMoveType.FastDropAttack
+                : Spider.SpiderMoveType.DropThenCrawl;
+        }
+
+        GameObject newSpider = Instantiate(spiderPrefab, spawnPosition, Quaternion.identity);
+
+        Spider spider = newSpider.GetComponent<Spider>();
+
+        if (spider != null)
+        {
+            spider.Initialize(
+                bedTarget,
+                this,
+                sanityManager,
+                chosenMoveType,
+                dropStopY
+            );
         }
         else
         {
-            Debug.LogWarning("Spawned spider prefab does not have Spider.cs attached!");
+            Debug.LogWarning("Spider prefab missing Spider.cs!");
         }
+
+        Debug.Log("Spawned spider type: " + chosenMoveType);
 
         currentSpidersAlive++;
     }
