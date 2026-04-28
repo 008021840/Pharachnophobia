@@ -54,7 +54,7 @@ public class SanityManager : MonoBehaviour
         }
     }
 
-    private void LoseGame()
+    public void LoseGame()
     {
         hasLost = true;
 
@@ -83,4 +83,5 @@ public class SanityManager : MonoBehaviour
             sanitySlider.value = currentSanity;
         }
     }
+
 }
