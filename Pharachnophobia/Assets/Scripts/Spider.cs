@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Spider : MonoBehaviour
 {
+    //audio
+    public AudioSource source;
+    public AudioClip Crawl;
     public enum SpiderMoveType
     {
         CrawlToTarget,
@@ -138,6 +141,7 @@ public class Spider : MonoBehaviour
             transform.position,
             target.position,
             moveSpeed * Time.deltaTime
+
         );
 
         if (Vector2.Distance(transform.position, target.position) <= reachDistance)
@@ -148,6 +152,7 @@ public class Spider : MonoBehaviour
             }
 
             Destroy(gameObject);
+            source.PlayOneShot(Crawl);
         }
     }
 

@@ -3,6 +3,10 @@ using System.Collections;
 
 public class Ghost : MonoBehaviour
 {
+    //audio
+    public AudioSource source;
+    public AudioClip deathsound;
+
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 2f;
     [SerializeField] private float directionChangeInterval = 1.5f;
@@ -102,6 +106,7 @@ public class Ghost : MonoBehaviour
     {
         if (ghostSpawnManager != null)
         {
+            source.PlayOneShot(deathsound);
             ghostSpawnManager.GhostDestroyed();
         }
     }
