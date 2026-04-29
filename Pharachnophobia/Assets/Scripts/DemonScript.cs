@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class DemonScript : MonoBehaviour
 {
+    public AudioSource source;
+    public AudioClip DemonLaugh;
     [SerializeField]
     Sprite[] sprites;
     int spriteNum = 0;
@@ -25,8 +27,10 @@ public class DemonScript : MonoBehaviour
         Debug.Log("overlapping demon");
         if (Input.GetMouseButtonDown(1) && spriteNum == 2)
         {
+            source.PlayOneShot(DemonLaugh);
             spriteNum = 0;
             Debug.Log("clicked demon");
+            
         }
     }
     IEnumerator ChangeSprite()
@@ -41,11 +45,14 @@ public class DemonScript : MonoBehaviour
         if(spriteNum < 2)
         {
             spriteNum = spriteNum + 1;
+            
         }
         else if(spriteNum >= 2)
         {
             sanityManager.GetComponent<SanityManager>().LoseGame();
         }
-            StartCoroutine(ChangeSprite());
+        
+        StartCoroutine(ChangeSprite());
+
     }
 }
