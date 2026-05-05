@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Loose
+  m_text: 'Lose
 
 '
   m_isRightToLeft: 0
