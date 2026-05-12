@@ -1,10 +1,11 @@
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class Spider : MonoBehaviour
 {
     //audio
-    public AudioSource source;
-    public AudioClip Crawl;
+    //public AudioSource source;
+    //public AudioClip Crawl;
     public enum SpiderMoveType
     {
         CrawlToTarget,
@@ -150,9 +151,9 @@ public class Spider : MonoBehaviour
             {
                 sanityManager.RemoveSanity(sanityLossOnReachTarget);
             }
-
             Destroy(gameObject);
-            source.PlayOneShot(Crawl);
+            //source.PlayOneShot(Crawl);
+
         }
     }
 

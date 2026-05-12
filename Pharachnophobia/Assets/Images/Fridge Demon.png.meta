@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 8f8fa97f58f4cd241a76cd92db165301
+guid: 89bb342defbcbfe458b8c7b75f710005
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7722648314245456695
-    second: 2DSpookyBedroom_0
+      213: -3809747984126712027
+    second: Fridge Demon_0
+  - first:
+      213: -2008722229264508451
+    second: Fridge Demon_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +99,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 2DSpookyBedroom_0
+      name: Fridge Demon_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 259
-        height: 194
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 733aed7b9bb5c2b60800000000000000
-      internalID: 7722648314245456695
+      spriteID: 527ed52b46e012bc0800000000000000
+      internalID: -3809747984126712027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fridge Demon_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 33
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd9124076c59f14e0800000000000000
+      internalID: -2008722229264508451
       vertices: []
       indices: 
       edges: []
@@ -148,7 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      2DSpookyBedroom_0: 7722648314245456695
+      Fridge Demon_0: -3809747984126712027
+      Fridge Demon_1: -2008722229264508451
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
