@@ -24,13 +24,20 @@ public class DemonScript : MonoBehaviour
     }
     private void OnMouseOver()
     {
-        Debug.Log("overlapping demon");
         if (Input.GetMouseButtonDown(1) && spriteNum == 2)
         {
+            if (FlashlightModeManager.Instance == null)
+                return;
+
+            if (!FlashlightModeManager.Instance.IsBlueMode)
+            {
+                Debug.Log("Need blue flashlight to click demon");
+                return;
+            }
+
             source.PlayOneShot(DemonLaugh);
             spriteNum = 0;
-            Debug.Log("clicked demon");
-            
+            Debug.Log("clicked demon with blue flashlight");
         }
     }
     IEnumerator ChangeSprite()

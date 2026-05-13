@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7860715880627176290}
   - component: {fileID: 6809393418918352478}
   - component: {fileID: 5022753503538342260}
+  - component: {fileID: -1332778659709501505}
   - component: {fileID: -2831296261176443788}
   - component: {fileID: 7499127684257946204}
   m_Layer: 0
@@ -140,6 +141,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.21, y: 0.28}
   m_EdgeRadius: 0
+--- !u!114 &-1332778659709501505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4043937879714812686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3eb5bfeca81e1e43bd3f840f829b8fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickableMonster
+  monsterType: 0
 --- !u!114 &-2831296261176443788
 MonoBehaviour:
   m_ObjectHideFlags: 0

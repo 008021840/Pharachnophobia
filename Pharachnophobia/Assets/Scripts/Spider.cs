@@ -167,6 +167,12 @@ public class Spider : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (FlashlightModeManager.Instance != null && FlashlightModeManager.Instance.IsBlueMode)
+        {
+            Debug.Log("Cannot click spider while blue light is on");
+            return;
+        }
+
         if (sanityManager != null)
         {
             sanityManager.AddSanity(sanityGainOnClick);

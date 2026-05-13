@@ -99,6 +99,12 @@ public class Ghost : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (FlashlightModeManager.Instance != null && FlashlightModeManager.Instance.IsBlueMode)
+        {
+            Debug.Log("Cannot click ghost while blue light is on");
+            return;
+        }
+
         Destroy(gameObject);
     }
 
