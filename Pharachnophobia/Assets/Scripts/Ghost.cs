@@ -110,10 +110,13 @@ public class Ghost : MonoBehaviour
 
     private void OnDestroy()
     {
+       
         if (ghostSpawnManager != null)
         {
+
             source.PlayOneShot(deathsound);
             ghostSpawnManager.GhostDestroyed();
         }
     }
+  
 }

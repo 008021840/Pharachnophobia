@@ -19,7 +19,7 @@ public class GhostSpawnManager : MonoBehaviour
 
     private Camera mainCamera;
     private int currentGhostsAlive = 0;
-
+    public SpriteRenderer spriteToFade;
     private void Start()
     {
         mainCamera = Camera.main;
@@ -83,6 +83,8 @@ public class GhostSpawnManager : MonoBehaviour
 
     public void GhostDestroyed()
     {
+   
+
         currentGhostsAlive--;
 
         if (currentGhostsAlive < 0)
